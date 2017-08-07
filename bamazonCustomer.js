@@ -60,16 +60,23 @@ function userInput() {
 			message: "Select the amount you would like to purchase."
 		} 
 		]).then(function(answer){
-			var chosenItem;
+			var chosenItemName;
+			var chosenItemNumber;
+			var chosenItemAmount;
+			var stockQuantity;
 			for (var jindex = 0; jindex < results.length; jindex++) {
 				if (answer.itemnumber == results[jindex].item_id) {
-					chosenItem = results[jindex].product_name;
+					chosenItemName = results[jindex].product_name;
+					chosenItemNumber = results[jindex].item_id;
 					chosenItemAmount = answer.amount;
 					stockQuantity = results[jindex].stock_quantity;
-					console.log("You've decided to purchase a " + chosenItem + " in the amount of " + chosenItemAmount);
 					var currentStock = stockQuantity - answer.amount;
+					console.log("You've decided to purchase a " + chosenItemName + " in the amount of " + chosenItemAmount);
 
-					connection.query("UPDATE products SET stock_quantity WHERE item_id = answer.itemnumber")
+					connection.query('UPDATE products SET stock_quantity = ? WHERE item_id = ?', [currentStock, chosenItemNumber], function (error, results, fields) {
+						if (error) throw error;
+ 						 // console.log(results);
+						});
 
 				} else if (answer.itemnumber >= 11) {
 					console.log("You've selected an item that does not exist in our database.");
