@@ -11,7 +11,7 @@ var connection = mysql.createConnection(
 		password: "root",
 		database: "bamazon_db"
 	}
-); 
+);
 
 // The start function. Calls the table and user input functions.
 function start() {
@@ -35,7 +35,7 @@ function table() {
 		// Use a for loop to grab the mysql data.
 		for (var index = 0; index < rows.length; index++) {
 			table.push(
-				[rows[index].item_id, rows[index].product_name, rows[index].department_name, 
+				[rows[index].item_id, rows[index].product_name, rows[index].department_name,
 				rows[index].price, rows[index].stock_quantity]
 				);
 		};
@@ -52,7 +52,7 @@ function userInput() {
 		inquirer
 		.prompt([
 		{
-			name: "itemnumber", 
+			name: "itemnumber",
 			type: "input",
 			message: "Which item would you like to purchase? Please input item ID",
 		},
@@ -60,7 +60,7 @@ function userInput() {
 			name: "amount",
 			type: "input",
 			message: "Select the amount you would like to purchase."
-		} 
+		}
 		]).then(function(answer){
 			// Var for item name, number, amount, quantity, and cost of items purchased.
 			var chosenItemName;
@@ -72,9 +72,9 @@ function userInput() {
 
 				if (answer.amount > results[jindex].stock_quantity) {
 					console.log("Sorry we're either out of stock or do not carry the amount you've entered.");
-				};
+				}
 
-				if (answer.itemnumber == results[jindex].item_id) {
+				else if (answer.itemnumber == results[jindex].item_id) {
 					// Var for item name, number, amount, quantity, and cost of items purchased.
 					chosenItemName = results[jindex].product_name;
 					chosenItemNumber = results[jindex].item_id;
@@ -96,7 +96,9 @@ function userInput() {
 					// Letting the user know how much the've been charged for the items purchased.
 					console.log("You've been charged the amount of $" + amountOwed);
 					// If a number is selected that is more than 10, let the user know no such item exists.
-				} else if (answer.itemnumber >= 11) {
+				}
+
+				else if (answer.itemnumber >= 11) {
 					console.log("You've selected an item that does not exist in our database.");
 				}
 			};
@@ -104,4 +106,3 @@ function userInput() {
 		});
 	});
 };
-
