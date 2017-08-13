@@ -11,8 +11,8 @@ Steps:
 
 Video Examples: 
 
-	*GitBash Example
+GitBash Example
 	![Demo](https://user-images.githubusercontent.com/25943616/29246527-d2f0cabc-7fba-11e7-9d5f-c0a9ef9b6431.gif)
 	
-	*MySql Update
+MySql Update
 	![Demo](https://user-images.githubusercontent.com/25943616/29246538-5d6b5e3c-7fbb-11e7-96cc-4a0878950615.gif)
